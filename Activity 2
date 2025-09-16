@@ -1,0 +1,88 @@
+class Animal:
+    def __init__(self, name, habitat):
+        self.name = name
+        self.habitat = habitat
+    
+    def move(self):
+        raise NotImplementedError("Subclasses must implement the move method")
+    
+    def speak(self):
+        raise NotImplementedError("Subclasses must implement the speak method")
+    
+    def __str__(self):
+        return f"I am a {self.name} and I live in {self.habitat}."
+
+
+class Bird(Animal):
+    def __init__(self, name, habitat, wingspan):
+        super().__init__(name, habitat)
+        self.wingspan = wingspan
+    
+    def move(self):
+        return f"{self.name} is flying! 🕊️"
+    
+    def speak(self):
+        return f"{self.name} says: Tweet tweet! 🎵"
+    
+    def build_nest(self):
+        return f"{self.name} is building a nest in the {self.habitat}."
+
+
+class Fish(Animal):
+    def __init__(self, name, habitat, fin_count):
+        super().__init__(name, habitat)
+        self.fin_count = fin_count
+    
+    def move(self):
+        return f"{self.name} is swimming! 🐟"
+    
+    def speak(self):
+        return f"{self.name} says: Glub glub! 💧"
+    
+    def blow_bubbles(self):
+        return f"{self.name} is blowing bubbles! 💦"
+
+
+class Snake(Animal):
+    def __init__(self, name, habitat, length):
+        super().__init__(name, habitat)
+        self.length = length
+    
+    def move(self):
+        return f"{self.name} is slithering! 🐍"
+    
+    def speak(self):
+        return f"{self.name} says: Hiss hiss! 🐍"
+    
+    def shed_skin(self):
+        return f"{self.name} is shedding its skin! 🪨"
+
+
+# Demonstration of polymorphism
+if __name__ == "__main__":
+    print("\n" + "=" * 50)
+    print("POLYMORPHISM CHALLENGE: ANIMALS")
+    print("=" * 50)
+    
+    # Create different animals
+    animals = [
+        Bird("Eagle", "mountains", 2.1),
+        Fish("Goldfish", "freshwater", 5),
+        Snake("Python", "jungle", 3.5)
+    ]
+    
+    # Demonstrate polymorphism
+    for animal in animals:
+        print(animal)
+        print(animal.move())
+        print(animal.speak())
+        
+        # Demonstrate unique methods for each subclass
+        if isinstance(animal, Bird):
+            print(animal.build_nest())
+        elif isinstance(animal, Fish):
+            print(animal.blow_bubbles())
+        elif isinstance(animal, Snake):
+            print(animal.shed_skin())
+        
+        print()  # Empty line for readability
